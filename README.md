@@ -20,4 +20,5 @@ Then:
 
 Dependencies
 ------------
-```sudo apt-get install cmake libzip-dev build-essential libssl-dev
+
+```sudo apt-get install cmake libzip-dev build-essential libssl-dev```
