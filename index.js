@@ -8,12 +8,12 @@ var git = require('nodegit'),
     async = require('async');
 
 var userName = process.argv[2];
-var repoName = process.argv[3];
-var bucketName = process.argv[4];
+var repoName = process.argv[4];
+var bucketName = process.argv[3];
 
 if (!repoName || !userName || !bucketName) {
   console.log("\nProvide a user name, repo name and bucket name.\n");
-  console.log("node index.js <user name> <repo name> <bucket name>\n")
+  console.log("node index.js <user name> <bucket name> <repo name>\n")
   process.exit(1);
 }
 
@@ -57,7 +57,7 @@ async.series([
     var fileStream = fstream.Reader({path:compressedFilePath, type: "File"})
     s3.putObject({Bucket:bucketName,Key:compressedFileName, Body:fileStream}, function(err, data){
       if (err) {
-        console.log("Upload error: "+err);
+        throw err;
       } else {
         console.log("Done uploading to S3.");
       }

@@ -14,7 +14,7 @@ First, rename ```config.json.sample``` to ```config.json``` and add your
 credentials.
 
 Then: 
-```node index.js <user> <repo> <bucket name>```
+```node index.js <user> <bucket> <repo>```
 
 Dependencies
 ------------
