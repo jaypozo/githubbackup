@@ -32,13 +32,15 @@ async.series([
     if (err) throw err; 
     console.log("Compressing file...");
     fstream.Reader({path:__dirname+"/tmp/"+repoName, type:"Directory"})
-      .on("close", function(){
-        console.log("Done compressing file.");
-        callback()
-      })
       .pipe(tar.Pack())
       .pipe(zlib.createGzip())
-      .pipe(fstream.Writer(compressedFilePath))
+      .pipe(
+        fstream.Writer(compressedFilePath)
+        .on("close", function(){
+          console.log("Done compressing file.");
+          callback()
+        })
+      )
     })
   },
   // cleanup the cloned repository
