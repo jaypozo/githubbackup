@@ -40,7 +40,7 @@ async.series([
       .pipe(zlib.createGzip())
       .pipe(fstream.Writer(compressedFilePath))
     })
-  },/*
+  },
   // cleanup the cloned repository
   function(callback){
     console.log("Deleting cloned repo...");
@@ -48,7 +48,7 @@ async.series([
       console.log("Deleted clone.");
       callback();
     })  
-  },*/
+  },
   // upload file to s3
   function(callback){
     console.log("Sending file to S3...");
