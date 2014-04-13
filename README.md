@@ -5,6 +5,8 @@ Send compressed archives of Github repositories to S3.
 
 Currently pulls down a clone, not a mirror.
 
+Does NOT include issues (yet).
+
 Pushes a gzipped tar file up to Amazon S3.
 
 Usage
