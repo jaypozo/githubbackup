@@ -3,6 +3,8 @@ Github Backup
 
 Send compressed archives of Github repositories to S3.
 
+Currently pulls down a clone, not a mirror.
+
 Pushes a gzipped tar file up to Amazon S3.
 
 Usage
