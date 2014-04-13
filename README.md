@@ -1,10 +1,9 @@
 Github Backup
 -------------
 
-Send compressed archives to Github repositories on S3.
+Send compressed archives of Github repositories to S3.
 
-Pulls down the repo and related issues into a csv file. Pushes a tar file up to
-Amazon S3.
+Pushes a gzipped tar file up to Amazon S3.
 
 Usage
 -----
