@@ -28,7 +28,7 @@ async.series([
   // checkout the repository, compress it
   function(callback){
     console.log("Cloning "+repoPath+"...\n");
-    git.Repo.clone(repoPath, "tmp/"+repoName, 'mirror', function(err,repo){
+    git.Repo.clone(repoPath, "tmp/"+repoName, null, function(err,repo){
     if (err) throw err; 
     console.log("Compressing file...");
     fstream.Reader({path:__dirname+"/tmp/"+repoName, type:"Directory"})
@@ -40,7 +40,7 @@ async.series([
       .pipe(zlib.createGzip())
       .pipe(fstream.Writer(compressedFilePath))
     })
-  },
+  },/*
   // cleanup the cloned repository
   function(callback){
     console.log("Deleting cloned repo...");
@@ -48,16 +48,16 @@ async.series([
       console.log("Deleted clone.");
       callback();
     })  
-  },
+  },*/
   // upload file to s3
   function(callback){
     console.log("Sending file to S3...");
     var fileStream = fstream.Reader({path:compressedFilePath, type: "File"})
     s3.putObject({Bucket:bucketName,Key:compressedFileName, Body:fileStream}, function(err, data){
       if (err) {
-        console.log(err) 
+        console.log("Upload error: "+err);
       } else {
-        console.log("Done uploading to S3.") 
+        console.log("Done uploading to S3.");
       }
       callback(); 
     });
